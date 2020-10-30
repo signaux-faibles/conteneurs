@@ -1,2 +1,2 @@
-docker build -t sf-mysql .
-docker save sf-mysql | gzip > sf-mysql.tar.gz
+docker build -t sf-mariadb .
+docker save sf-mariadb | gzip > sf-mariadb.tar.gz

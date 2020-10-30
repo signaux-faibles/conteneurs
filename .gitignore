@@ -1,2 +1,4 @@
 mariadb/sf-mysql.tar.gz
 matomo/sf-matomo.tar.gz
+mariadb/sf-mariadb.tar.gz
+prometheus/prometheus.tar.gz
