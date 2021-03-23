@@ -1,2 +1,2 @@
-docker build -t prometheus .
-docker save prometheus | gzip > prometheus.tar.gz
+docker build -t prometheus-server .
+docker save prometheus-server | gzip > prometheus-server.tar.gz

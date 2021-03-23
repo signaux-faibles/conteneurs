@@ -1,0 +1,1 @@
+FROM wekanteam/wekan:latest
