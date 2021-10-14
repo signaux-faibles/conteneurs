@@ -31,7 +31,7 @@ jobs:
         run: |
           docker build -t wekan-app wekan-app/.
 
-      - name: Build and Push wekan-app Docker Image
+      - name: Push wekan-app Docker Image
         uses: docker/build-push-action@v2
         with:
           context: wekan-app
