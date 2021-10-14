@@ -35,6 +35,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: wekan-app
+          push: true
           tags: |
             ghcr.io/${{ github.repository }}/wekan-app:latest
             ghcr.io/${{ github.repository }}/wekan-app:${{ github.sha }}
