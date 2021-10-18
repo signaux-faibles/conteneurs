@@ -1,8 +1,8 @@
 mariadb/sf-mysql.tar.gz
 matomo/sf-matomo.tar.gz
 mariadb/sf-mariadb.tar.gz
-prometheus/prometheus.tar.gz
-prometheus/prometheus-server.tar.gz
+prometheus-server/prometheus.tar.gz
+prometheus-server/prometheus-server.tar.gz
 wekan-app/wekan-app.tar.gz
 wekan-db/wekan-db.tar.gz
 .idea/
