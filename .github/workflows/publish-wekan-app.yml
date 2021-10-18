@@ -1,4 +1,4 @@
-name: Deploy Docker
+name: Publie Werkan-App dans le registre Docker
 
 on:
   push:

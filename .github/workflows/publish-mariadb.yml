@@ -1,4 +1,4 @@
-name: Deploy Docker
+name: Publie MariaDB dans le registre Docker
 
 on:
   push:

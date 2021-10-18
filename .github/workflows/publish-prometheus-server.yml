@@ -1,4 +1,4 @@
-name: Deploy Docker
+name: Publie Prometheus-Server dans le registre Docker
 
 on:
   push:
