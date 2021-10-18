@@ -1,5 +1,3 @@
-Name: callee
-
 on:
   workflow_call:
     inputs:
