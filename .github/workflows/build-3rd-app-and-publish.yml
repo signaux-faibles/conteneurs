@@ -1,0 +1,45 @@
+Name: callee
+
+on:
+  workflow_call:
+    inputs:
+      app:
+        description: 'Application à publier'
+        required: true
+        type: string
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  Deploy:
+    name: Crée l'image et publie
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Login to GitHub Container Registry
+        id: login
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Build ${{ inputs.app }}'
+        shell: bash
+        run: |
+          "docker build --tag ${{ inputs.app }} ${{ inputs.app }}/."
+
+      - name: 'Push ${{ inputs.app }} Docker image'
+        uses: docker/build-push-action@v2
+        with:
+          context: '${{ inputs.app }}'
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository }}/${{ inputs.app }}:latest
