@@ -32,7 +32,7 @@ jobs:
       - name: 'Build ${{ inputs.app }}'
         shell: bash
         run: |
-          "docker build --tag ${{ inputs.app }} ${{ inputs.app }}/."
+          docker build --tag ${{ inputs.app }} ./${{ inputs.app }}
 
       - name: 'Push ${{ inputs.app }} Docker image'
         uses: docker/build-push-action@v2
