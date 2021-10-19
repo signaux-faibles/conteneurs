@@ -1,1 +1,1 @@
-FROM wekanteam/wekan:latest
+FROM wekanteam/wekan:v5.65
