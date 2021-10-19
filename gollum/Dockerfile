@@ -1,4 +1,4 @@
-FROM ruby
+FROM ruby:3.0.2
 RUN apt-get -y update && apt-get -y install libicu-dev cmake && rm -rf /var/lib/apt/lists/*
 RUN gem install github-linguist && \
     gem install gollum && \
