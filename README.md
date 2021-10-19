@@ -17,9 +17,9 @@ A l'installation, on utilisera la version`latest` de chaque conteneur.
 
 Il y a un [fichier de worflow commun](.github/workflows/build-3rd-app-and-publish.yml) à tous qui construit le 
 conteneur et le pousse dans le registre correspondant.
-Les autres fichiers de workflow se lancent uniquement lorsqu'une modification est faite
-sur le répertoire correspondant.
-Ex : si je modifie un fichier dans le répertoire `Gollum`, 
+Les autres fichiers de workflow se lancent uniquement lorsqu'une modification est poussée 
+sur la branche master sur le répertoire correspondant.
+Ex : si je pousse une modification sur un fichier dans le répertoire `Gollum`, 
 c'est [le workflow de Gollum](.github/workflows/publish-gollum.yml) qui démarrera.
 
 Cependant chaque workflow peut être lancé manuellement via 
