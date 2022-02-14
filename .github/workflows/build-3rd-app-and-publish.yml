@@ -16,25 +16,14 @@ jobs:
   Deploy:
     name: Crée l'image et publie
     runs-on: ubuntu-latest
-#    env:
-#      IMG_NAME: ${{ github.repository }}
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ${{ inputs.app }}
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=ref,event=branch
-            type=ref,event=tag
-            type=sha
+#      @see https://github.com/nelonoel/branch-name
+      - name: Get branch name
+        uses: nelonoel/branch-name@v1.0.1
 
       - name: Login to GitHub Container Registry
         id: login
@@ -54,5 +43,6 @@ jobs:
         with:
           context: ${{ inputs.app }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: |
+            ghcr.io/${{ github.repository }}/${{ inputs.app }}:latest
+            ghcr.io/${{ github.repository }}/${{ inputs.app }}:${{ BRANCH_NAME }}
