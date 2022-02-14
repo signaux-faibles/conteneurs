@@ -45,4 +45,4 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ghcr.io/${{ github.repository }}/${{ inputs.app }}:latest
-            ghcr.io/${{ github.repository }}/${{ inputs.app }}:${{ BRANCH_NAME }}
+            ghcr.io/${{ github.repository }}/${{ inputs.app }}:${BRANCH_NAME}
