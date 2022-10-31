@@ -1,2 +1,2 @@
-FROM jboss/keycloak:15.0.1
+FROM jboss/keycloak:19.0.3
 ADD theme-signaux-faibles.tar.gz /opt/jboss/keycloak/themes/
