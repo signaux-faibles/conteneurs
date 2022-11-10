@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set branch name
         id: vars
@@ -27,14 +27,14 @@ jobs:
 
       - name: Login to GitHub Container Registry
         id: login
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Push ${{ inputs.app }} Docker image'
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
           context: ${{ inputs.app }}
           push: ${{ github.event_name != 'pull_request' }}
