@@ -10,4 +10,4 @@ jobs:
   call-workflow-passing-data:
     uses: signaux-faibles/conteneurs/.github/workflows/build-3rd-app-and-publish.yml@master
     with:
-      app: wekan-db
+      app: duplicity
