@@ -23,7 +23,7 @@ jobs:
 
       - name: Set version number
         id: get_version
-        run: echo ::set-output name=short_ref::$(cat VERSION)
+        run: echo "container_version=$(cat VERSION)" >> $GITHUB_ENV
 
       - name: Login to GitHub Container Registry
         id: login
@@ -40,4 +40,4 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ghcr.io/${{ github.repository }}/${{ inputs.app }}:latest
-            ghcr.io/${{ github.repository }}/${{ inputs.app }}:${{ steps.get_version.outputs.short_ref }}
+            ghcr.io/${{ github.repository }}/${{ inputs.app }}:${{ env.container_version }}
