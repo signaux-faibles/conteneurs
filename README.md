@@ -20,8 +20,8 @@ conteneur et le pousse dans le registre correspondant.
 Les autres fichiers de workflow se lancent uniquement lorsqu'une modification est poussée 
 sur la branche master sur le répertoire correspondant.
 Ex : si je pousse une modification sur un fichier dans le répertoire `Gollum`, 
-c'est [le workflow de Gollum](.github/workflows/publish-gollum.yml) qui démarrera.
-Le conteneur construit sera poussé dans le registre `ghcr.io/signaux-faibles/conteneurs/gollum`.
+c'est [le workflow de Keycloak](.github/workflows/publish-keycloak.yml) qui démarrera.
+Le conteneur construit sera poussé dans le registre `ghcr.io/signaux-faibles/conteneurs/keycloak`.
 
 
 Cependant chaque workflow peut être lancé manuellement via 
