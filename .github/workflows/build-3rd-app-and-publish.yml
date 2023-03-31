@@ -21,9 +21,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Affiche le contenu du fichier VERSION
+        run: echo "container_version=$(cat VERSION)"
+
       - name: Set version number
-        id: get_version
         run: echo "container_version=$(cat VERSION)" >> $GITHUB_ENV
+
+      - name: Affiche le numéro de version de l'environnement
+        run: echo "env.container_version -> ${{ env.container_version }}"
 
       - name: Login to GitHub Container Registry
         id: login
