@@ -22,10 +22,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Affiche le contenu du fichier VERSION
-        run: echo "container_version=$(cat VERSION)"
+        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)"
 
       - name: Set version number
-        run: echo "container_version=$(cat VERSION)" >> $GITHUB_ENV
+        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)" >> $GITHUB_ENV
 
       - name: Affiche le numéro de version de l'environnement
         run: echo "env.container_version -> ${{ env.container_version }}"
