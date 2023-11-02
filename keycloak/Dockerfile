@@ -1,2 +1,2 @@
-FROM quay.io/keycloak/keycloak:21.0
+FROM quay.io/keycloak/keycloak:22.0
 ADD theme-signaux-faibles.tar.gz /opt/keycloak/themes/
