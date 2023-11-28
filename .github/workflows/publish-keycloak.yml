@@ -21,4 +21,4 @@ jobs:
     uses: signaux-faibles/conteneurs/.github/workflows/build-3rd-app-and-publish.yml@master
     with:
       app: keycloak
-      version: ${{ env.container_version }}
+      version: ${{ env.keycloak_version }}
