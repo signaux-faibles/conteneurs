@@ -11,4 +11,4 @@ jobs:
     uses: signaux-faibles/conteneurs/.github/workflows/build-3rd-app-and-publish.yml@master
     with:
       app: keycloak
-      version: "v$(cat keycloak/Dockerfile | head -n 1 | cut -d : -f 2)"
+      version: "echo v$(cat keycloak/Dockerfile | head -n 1 | cut -d : -f 2)"
