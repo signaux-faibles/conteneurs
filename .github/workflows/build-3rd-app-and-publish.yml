@@ -32,6 +32,9 @@ jobs:
       - name: Affiche le contenu du fichier VERSION
         run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)"
 
+      - name: Affiche le numéro de version passé en paramètre
+        run: echo "param_version=${{ inputs.version }}"
+
       - name: Set version number
         run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)" >> $GITHUB_ENV
 
