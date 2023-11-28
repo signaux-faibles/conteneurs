@@ -7,8 +7,18 @@ on:
   workflow_dispatch:
 
 jobs:
+  fetch-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Récupère le numéro de version de keycloak
+        run: echo "keycloak_version=v$(cat keycloak/Dockerfile | head -n 1 | cut -d ':' -f 2)" >> $GITHUB_ENV
+
   call-workflow-passing-data:
+    needs: fetch-version
     uses: signaux-faibles/conteneurs/.github/workflows/build-3rd-app-and-publish.yml@master
     with:
       app: keycloak
-      version: "echo v$(cat keycloak/Dockerfile | head -n 1 | cut -d : -f 2)"
+      version: ${{ env.container_version }}
