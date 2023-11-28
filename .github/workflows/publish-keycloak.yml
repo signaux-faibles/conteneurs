@@ -14,11 +14,13 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Récupère le numéro de version de keycloak
-        run: echo "keycloak_version=v$(cat keycloak/Dockerfile | head -n 1 | cut -d ':' -f 2)" >> $GITHUB_ENV
+        run: echo "keycloak-version=v$(cat keycloak/Dockerfile | head -n 1 | cut -d ':' -f 2)" >> $GITHUB_ENV
+    outputs:
+      keycloak_version: ${{ env.keycloak-version }}
 
   call-workflow-passing-data:
     needs: fetch-version
     uses: signaux-faibles/conteneurs/.github/workflows/build-3rd-app-and-publish.yml@master
     with:
       app: keycloak
-      version: ${{ env.keycloak_version }}
+      version: ${{ needs.fetch-version.outputs.keycloak-version }}
