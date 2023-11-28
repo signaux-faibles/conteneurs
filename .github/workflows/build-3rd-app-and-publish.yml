@@ -5,6 +5,10 @@ on:
         description: 'Application à publier'
         required: true
         type: string
+      version:
+        description: 'Tag supplémentaire Docker à appliquer'
+        required: false
+        type: string
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -46,7 +50,8 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ${{ inputs.app }}
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.actor != 'dependabot[bot]' }}
           tags: |
             ghcr.io/${{ github.repository }}/${{ inputs.app }}:latest
             ghcr.io/${{ github.repository }}/${{ inputs.app }}:${{ env.container_version }}
+            ghcr.io/${{ github.repository }}/${{ inputs.app }}:${{ inputs.version }}
