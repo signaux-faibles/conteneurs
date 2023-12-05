@@ -29,13 +29,13 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Affiche le contenu du fichier VERSION
-        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)"
-
       - name: Affiche le numéro de version passé en paramètre
         run: echo "param_version=${{ inputs.version }}"
 
-      - name: Set version number
+      - name: Affiche le contenu du fichier VERSION
+        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)"
+
+      - name: Fixe version number
         run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)" >> $GITHUB_ENV
 
       - name: Affiche le numéro de version de l'environnement
