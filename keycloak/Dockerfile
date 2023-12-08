@@ -5,9 +5,6 @@ ENV KC_HEALTH_ENABLED=true
 ENV KC_METRICS_ENABLED=true
 ENV KC_HTTP_RELATIVE_PATH=/auth
 
-# Configure a database vendor
-ENV KC_DB=postgres
-
 WORKDIR /opt/keycloak
 
 ADD theme-signaux-faibles.tar.gz /opt/keycloak/themes/
