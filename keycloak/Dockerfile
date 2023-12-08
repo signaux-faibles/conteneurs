@@ -8,12 +8,12 @@ ENV KC_HOSTNAME=localhost
 
 ENV KC_HTTP_RELATIVE_PATH=/auth
 
+ADD theme-signaux-faibles.tar.gz /opt/keycloak/themes/
 WORKDIR /opt/keycloak
 
 RUN /opt/keycloak/bin/kc.sh build
 
 FROM quay.io/keycloak/keycloak:23.0
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
-ADD theme-signaux-faibles.tar.gz /opt/keycloak/themes/
 
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
