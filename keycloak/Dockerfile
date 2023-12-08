@@ -10,10 +10,10 @@ ENV KC_HTTP_RELATIVE_PATH=/auth
 
 WORKDIR /opt/keycloak
 
-ADD theme-signaux-faibles.tar.gz /opt/keycloak/themes/
 RUN /opt/keycloak/bin/kc.sh build
 
 FROM quay.io/keycloak/keycloak:23.0
 COPY --from=builder /opt/keycloak/ /opt/keycloak/
+ADD theme-signaux-faibles.tar.gz /opt/keycloak/themes/
 
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
