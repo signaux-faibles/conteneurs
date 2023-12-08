@@ -13,11 +13,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Affiche le numéro de version de keycloak
-        run: echo "keycloak_version=v$(cat keycloak/Dockerfile | head -n 1 | cut -d ':' -f 2)"
-
       - name: Fixe le numéro de version de keycloak
-        run: echo "keycloak_version=v$(cat keycloak/Dockerfile | head -n 1 | cut -d ':' -f 2)" >> $GITHUB_ENV
+        run: echo "keycloak_version=v$(cat keycloak/Dockerfile | head -n 1 | cut -d ':' -f 2 | cut -d ' ' -f 1)" >> $GITHUB_ENV
 
       - name: Affiche le numéro de version keycloak depuis l'environnement
         run: echo "env.keycloak_version -> ${{ env.keycloak_version }}"
