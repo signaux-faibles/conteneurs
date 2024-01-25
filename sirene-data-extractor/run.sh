@@ -7,10 +7,7 @@ set -o nounset
 # don't hide errors within pipes
 set -o pipefail
 
-USAGE="run.sh path/to/csv/files"
-
 function main() {
-
   log "vérifie la présence des fichiers requis"
   requirements=("/data/sireneUL.csv" "/data/StockEtablissement_utf8_geo.csv" "/data/StockEtablissementHistorique_utf8.csv")
   for fichier in "${requirements[@]}"; do
