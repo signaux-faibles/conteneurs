@@ -5,7 +5,7 @@ FROM python:3.9
 WORKDIR /app
 
 # Installe les dépendances, y compris pandas
-RUN pip install --no-cache-dir pandas
+RUN pip install --no-cache-dir pandas==3.3
 
 # Copie le reste de l'application dans le conteneur
 COPY python/* /app/

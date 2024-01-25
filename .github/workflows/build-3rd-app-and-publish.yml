@@ -29,14 +29,24 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Affiche le numéro de version passé en paramètre
-        run: echo "param_version=${{ inputs.version }}"
+      - name: Fixe le numéro de version passé en paramètre
+        run: |
+          version_from_container=${{ inputs.version }}
+          echo "numéro de version récupéré sur le container=${version_from_container}"
+          version_from_file=$(cat ${{ inputs.app }}/VERSION)
+          echo "numéro de version récupéré sur le fichier VERSION=${version_from_file}"
+          container_version="${version_from_container:-version_from_file}"
+          echo "numéro de version choisi ${container_version}"
+          echo "container_version=${container_version}" >> $GITHUB_ENV
 
-      - name: Affiche le contenu du fichier VERSION
-        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)"
-
-      - name: Fixe version number
-        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)" >> $GITHUB_ENV
+#      - name: Affiche le numéro de version passé en paramètre
+#        run: echo "param_version=${{ inputs.version }}"
+#
+#      - name: Affiche le contenu du fichier VERSION
+#        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)"
+#
+#      - name: Fixe version number
+#        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)" >> $GITHUB_ENV
 
       - name: Affiche le numéro de version de l'environnement
         run: echo "env.container_version -> ${{ env.container_version }}"
@@ -60,4 +70,3 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository }}/${{ inputs.app }}:latest
             ghcr.io/${{ github.repository }}/${{ inputs.app }}:${{ env.container_version }}
-            ghcr.io/${{ github.repository }}/${{ inputs.app }}:${{ inputs.version }}
