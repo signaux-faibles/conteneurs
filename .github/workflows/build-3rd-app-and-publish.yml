@@ -53,7 +53,7 @@ jobs:
       - name: Affiche le numéro de version de l'environnement
         run: |
           echo "env.container_version -> ${{ env.container_version }}"
-          echo "container_version -> ${{ container_version }}"
+          echo "container_version -> ${container_version}"
 
       - name: Login to GitHub Container Registry
         id: login
