@@ -28,7 +28,7 @@ function main() {
 
   log "lance l'extraction des dates sirene"
   python extract_sirene_dates.py \
-  --categorical_data /data/sortie_intermediaire.csv \
+  --categorical_data /data/sirene_intermediaire.csv \
   --et_hist_file /data/StockEtablissementHistorique_utf8.csv \
   --output_file /data/sirene.csv
 
