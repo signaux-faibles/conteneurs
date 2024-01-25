@@ -38,17 +38,6 @@ jobs:
           container_version="${version_from_container:-$version_from_file}"
           echo "container_version=${container_version}"
           echo "container_version=${container_version}" >> $GITHUB_ENV
-#          echo "numéro de version choisi=${container_version}"
-#          echo "container_version=${container_version}" >> $GITHUB_ENV
-
-#      - name: Affiche le numéro de version passé en paramètre
-#        run: echo "param_version=${{ inputs.version }}"
-#
-#      - name: Affiche le contenu du fichier VERSION
-#        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)"
-#
-#      - name: Fixe version number
-#        run: echo "container_version=$(cat ${{ inputs.app }}/VERSION)" >> $GITHUB_ENV
 
       - name: Affiche le numéro de version de l'environnement
         run: |
