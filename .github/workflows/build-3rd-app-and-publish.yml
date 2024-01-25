@@ -29,7 +29,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Fixe le numéro de version passé en paramètre
+      - name: Sélectionne le numéro de version
         run: |
           version_from_container=${{ inputs.version }}
           echo "numéro de version récupéré sur le container=${version_from_container}"
