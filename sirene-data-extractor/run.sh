@@ -30,7 +30,7 @@ function main() {
   python extract_sirene_dates.py \
   --categorical_data /data/sirene_intermediaire.csv \
   --et_hist_file /data/StockEtablissementHistorique_utf8.csv \
-  --output_file /data/sirene.csv
+  --output_file /data/sirene_dates.csv
 
   log "supprime le fichier intermédiaire"
   rm -f /data/sirene_intermediaire.csv
