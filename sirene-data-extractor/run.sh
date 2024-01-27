@@ -38,7 +38,7 @@ function main() {
   --output_file /output/${OUTPUT_FILE}
 
   log "supprime le fichier intermédiaire"
-  rm -f /data/${TEMP_FILE}
+  rm -f /output/${TEMP_FILE}
 }
 
 function assert_file_exist() {
