@@ -10,7 +10,7 @@ En sortie il produira un fichier `sirene.csv` contenant uniquement les données 
 
 ## Exécution
 ```bash
-podman run -v path/to/csv/files:data sirene-data-extractor
+podman run -v path/to/input/files:/input -v path/to/output/files:/output sirene-data-extractor
 ```
 
 __ATTENTION :__ 

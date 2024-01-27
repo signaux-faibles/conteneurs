@@ -19,21 +19,26 @@ function main() {
           exit 1
       fi
   done
+  TEMP_FILE=sirene_intermediaire.csv
+  OUTPUT_FILE=sirene_dates.csv
+
+  log "fichier intermédiaire -> ${TEMP_FILE}"
+  log "fichier de sortie -> ${OUTPUT_FILE}"
 
   log "lance l'extraction des catégories sirene"
   python extract_sirene_categorical.py \
-  --ul_file /data/sireneUL.csv \
-  --et_file /data/StockEtablissement_utf8_geo.csv \
-  --output_file /data/sirene_intermediaire.csv
+  --ul_file /input/sireneUL.csv \
+  --et_file /input/StockEtablissement_utf8_geo.csv \
+  --output_file /ouput/${TEMP_FILE}
 
   log "lance l'extraction des dates sirene"
   python extract_sirene_dates.py \
-  --categorical_data /data/sirene_intermediaire.csv \
-  --et_hist_file /data/StockEtablissementHistorique_utf8.csv \
-  --output_file /data/sirene_dates.csv
+  --categorical_data /output/${TEMP_FILE} \
+  --et_hist_file /input/StockEtablissementHistorique_utf8.csv \
+  --output_file /output/${OUTPUT_FILE}
 
   log "supprime le fichier intermédiaire"
-  rm -f /data/sirene_intermediaire.csv
+  rm -f /data/${TEMP_FILE}
 }
 
 function assert_file_exist() {
