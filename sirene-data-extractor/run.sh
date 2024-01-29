@@ -29,7 +29,7 @@ function main() {
   python extract_sirene_categorical.py \
   --ul_file /input/sireneUL.csv \
   --et_file /input/StockEtablissement_utf8_geo.csv \
-  --output_file /ouput/${TEMP_FILE}
+  --output_file /output/${TEMP_FILE}
 
   log "lance l'extraction des dates sirene"
   python extract_sirene_dates.py \
