@@ -9,7 +9,7 @@ set -o pipefail
 
 function main() {
   log "vérifie la présence des fichiers requis"
-  requirements=("/data/sireneUL.csv" "/data/StockEtablissement_utf8_geo.csv" "/data/StockEtablissementHistorique_utf8.csv")
+  requirements=("/input/sireneUL.csv" "/input/StockEtablissement_utf8_geo.csv" "/input/StockEtablissementHistorique_utf8.csv")
   for fichier in "${requirements[@]}"; do
       assert_file_exist "${fichier}"
       local resultat=$?
