@@ -96,6 +96,4 @@ df_dates = pd.merge(df_et_ul, df_et_hist, on="siret", how="inner").drop(
 
 # Export
 logging.debug(f'Export dans {args.OUTPUT_FILE}')
-df_dates.set_index("siren").to_csv(
-    args.OUTPUT_FILE,
-)
+df_dates.to_csv(args.OUTPUT_FILE, index=False)
