@@ -7,7 +7,7 @@ WORKDIR /app
 RUN pip install --upgrade pip
 
 # Installe les dépendances, y compris pandas
-RUN pip install --no-cache-dir pandas
+RUN pip install --no-cache-dir pandas==2.2.1
 
 # Copie le reste de l'application dans le conteneur
 COPY python/* /app/
@@ -18,5 +18,3 @@ RUN chmod +x run.sh
 
 # Définissez la commande à exécuter au démarrage du conteneur
 CMD ["./run.sh"]
-
-
