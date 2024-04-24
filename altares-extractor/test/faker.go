@@ -1,14 +1,13 @@
 package test
 
 import (
+	"altares/pkg"
 	"log/slog"
 	"math/rand"
 	"os"
 	"time"
 
 	"github.com/jaswdr/faker"
-
-	"altares/pkg/utils"
 )
 
 var Fake faker.Faker
@@ -31,8 +30,8 @@ func CreateRandomFile() *os.File {
 
 func CreateRandomFileWithContent(content string) *os.File {
 	temp, err := os.CreateTemp(os.TempDir(), "fake_*")
-	utils.ManageError(err, "erreur à la création du fichier temporaire")
+	pkg.ManageError(err, "erreur à la création du fichier temporaire")
 	err = os.WriteFile(temp.Name(), []byte(content), 666)
-	utils.ManageError(err, "erreur à l'écriture du fichier temporaire", slog.Any("file", temp))
+	pkg.ManageError(err, "erreur à l'écriture du fichier temporaire", slog.Any("file", temp))
 	return temp
 }

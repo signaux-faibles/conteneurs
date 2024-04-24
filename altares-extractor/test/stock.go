@@ -1,20 +1,18 @@
 package test
 
 import (
+	"altares/pkg"
 	"encoding/csv"
 	"fmt"
 	"os"
 	"strconv"
 	"strings"
 	"time"
-
-	"altares/pkg/altares"
-	"altares/pkg/utils"
 )
 
 func GenerateStockCSV(lines int) *os.File {
 	temp, err := os.CreateTemp(os.TempDir(), "stock_*.csv")
-	utils.ManageError(err, "erreur à la création du fichier stock")
+	pkg.ManageError(err, "erreur à la création du fichier stock")
 	headers := []string{
 		"SIREN",
 		"ETAT_ORGANISATION",
@@ -31,16 +29,16 @@ func GenerateStockCSV(lines int) *os.File {
 	writer := csv.NewWriter(temp)
 	writer.Comma = ';'
 	err = writer.Write(headers)
-	utils.ManageError(err, "erreur à l'écriture des headers")
+	pkg.ManageError(err, "erreur à l'écriture des headers")
 	for i := 0; i < lines; i++ {
 		err = writer.Write(newStockLine())
-		utils.ManageError(err, "erreur d'écriture de la ligne")
+		pkg.ManageError(err, "erreur d'écriture de la ligne")
 	}
 	writer.Flush()
 	err = temp.Close()
-	utils.ManageError(err, "erreur à la fermeture du fichier")
+	pkg.ManageError(err, "erreur à la fermeture du fichier")
 	open, err := os.Open(temp.Name())
-	utils.ManageError(err, "erreur à la réouverture du fichier")
+	pkg.ManageError(err, "erreur à la réouverture du fichier")
 	return open
 }
 
@@ -84,8 +82,8 @@ func aNbFournisseurs() string {
 }
 
 func aPaydex() (string, string, string) {
-	code := Fake.RandomStringMapKey(altares.Paydex)
-	label := altares.Paydex[code]
+	code := Fake.RandomStringMapKey(pkg.Paydex)
+	label := pkg.Paydex[code]
 	nbJours := ""
 	before, _, found := strings.Cut(label, " ")
 	if found {

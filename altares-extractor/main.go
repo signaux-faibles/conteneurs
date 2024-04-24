@@ -1,63 +1,40 @@
 package main
 
 import (
+	"altares/pkg"
 	"io"
 	"log/slog"
 	"os"
-
-	"altares/pkg/altares"
-	"altares/pkg/utils"
 )
 
 var loglevel *slog.LevelVar
 
 func main() {
-	inputs, o := readArgs()
+	input, o := readArgs()
 	output, err := os.Create(o)
-	utils.ManageError(err, "erreur à la création du fichier de sortie")
+	pkg.ManageError(err, "erreur à la création du fichier de sortie")
 	slog.Debug("fichier de sortie créé", slog.String("filename", output.Name()))
-	defer utils.CloseIt(output, "fermeture du fichier de sortie : "+os.Args[1])
-	convertAndConcat2(inputs, output)
+	defer pkg.CloseIt(output, "fermeture du fichier de sortie : "+o)
+	convertAndConcat(input, output)
 }
 
-func convertAndConcat(altaresFiles []string, outputCsv io.Writer) {
-	slog.Debug("démarrage de la conversion et de la concaténation", slog.Any("inputs", altaresFiles))
-	altares.WriteHeaders(outputCsv)
-	altares.ConvertStock(altaresFiles[0], outputCsv)
-	if len(altaresFiles) == 1 {
-		slog.Info("terminé, pas de fichier incrément")
-	}
-	for _, filename := range altaresFiles[1:] {
-		altares.ConvertIncrement(filename, outputCsv)
-	}
+func convertAndConcat(altaresFile string, outputCsv io.Writer) {
+	slog.Debug("démarrage de la conversion et de la concaténation", slog.Any("input", altaresFile))
+	pkg.WriteHeaders(outputCsv)
+	pkg.ConvertAltaresFile(altaresFile, outputCsv)
 }
 
-func convertAndConcat2(altaresFiles []string, outputCsv io.Writer) {
-	slog.Debug("démarrage de la conversion et de la concaténation", slog.Any("inputs", altaresFiles))
-	altares.WriteHeaders(outputCsv)
-	//altares.ConvertStock(altaresFiles[0], outputCsv)
-	//if len(altaresFiles) == 1 {
-	//	slog.Info("terminé, pas de fichier incrément")
-	//}
-	for _, filename := range altaresFiles[1:] {
-		altares.Convert(filename, outputCsv)
-	}
-}
-
-func readArgs() (inputs []string, output string) {
+func readArgs() (input string, output string) {
 	slog.Debug("lecture des arguments", slog.String("status", "start"), slog.Any("all", os.Args))
-	if len(os.Args) <= 2 {
-		slog.Warn("rien à faire, car pas de fichiers altares ou pas de fichier sortie")
+	if len(os.Args) != 3 {
+		slog.Warn("rien à faire, car pas de fichiers altares ou pas de fichier source")
 		os.Exit(0)
 	}
-	output = os.Args[len(os.Args)-1]
-	inputs = os.Args[1 : len(os.Args)-1]
-	if len(inputs) == 0 {
-		slog.Warn("rien à faire, car pas de fichiers altares")
-		os.Exit(0)
-	}
-	slog.Debug("lecture des arguments", slog.String("status", "end"), slog.String("output", output), slog.Any("inputs", inputs))
-	return inputs, output
+	input = os.Args[1]
+	output = os.Args[2]
+
+	slog.Debug("lecture des arguments", slog.String("status", "end"), slog.String("output", output), slog.Any("input", input))
+	return input, output
 }
 
 func init() {
