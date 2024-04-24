@@ -1,4 +1,4 @@
-name: Publie l'extracteur de données sirene dans le registre Docker
+name: Publie l'extracteur du fichier Altarès
 
 on:
   push:
