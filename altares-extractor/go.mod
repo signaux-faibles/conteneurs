@@ -1,6 +1,6 @@
 module altares
 
-go 1.21
+go 1.22
 
 require (
 	github.com/jaswdr/faker v1.19.1
