@@ -1,8 +1,8 @@
-name: Publie PostgreSQL+pglogical dans le registre Docker
+name: Publie PostgreSQL+pgparquet dans le registre Docker
 
 on:
   push:
-    paths: [ postgresql-pglogical/** ]
+    paths: [ postgresql-pgparquet/** ]
   # Permet de lancer manuellement depuis l'onglet Actions
   workflow_dispatch:
 
@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fixe le numéro de version de PostgreSQL
-        run: echo "postgres_version=v$(cat postgresql-pglogical/Dockerfile | head -n 1 | cut -d ':' -f 2 | cut -d ' ' -f 1)" >> $GITHUB_ENV
+        run: echo "postgres_version=v$(cat postgresql-pgparquet/Dockerfile | head -n 1 | cut -d ':' -f 2 | cut -d ' ' -f 1)" >> $GITHUB_ENV
 
       - name: Affiche le numéro de version PostgreSQL depuis l'environnement
         run: echo "env.postgres_version -> ${{ env.postgres_version }}"
@@ -25,5 +25,5 @@ jobs:
     needs: fetch_version
     uses: signaux-faibles/conteneurs/.github/workflows/build-3rd-app-and-publish.yml@master
     with:
-      app: postgresql-pglogical
+      app: postgresql-pgparquet
       version: ${{ needs.fetch_version.outputs.postgres_version }}
