@@ -7,23 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  fetch_version:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Fixe le numéro de version de PostgreSQL
-        run: echo "postgres_version=v$(cat postgresql-pgparquet/Dockerfile | head -n 1 | cut -d ':' -f 2 | cut -d ' ' -f 1)" >> $GITHUB_ENV
-
-      - name: Affiche le numéro de version PostgreSQL depuis l'environnement
-        run: echo "env.postgres_version -> ${{ env.postgres_version }}"
-    outputs:
-      postgres_version: ${{ env.postgres_version }}
-
   call-workflow-passing-data:
-    needs: fetch_version
     uses: signaux-faibles/conteneurs/.github/workflows/build-3rd-app-and-publish.yml@master
     with:
       app: postgresql-pgparquet
-      version: ${{ needs.fetch_version.outputs.postgres_version }}
